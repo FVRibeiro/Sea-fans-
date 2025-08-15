@@ -1,10 +1,7 @@
-rm(list=ls())
-setwd("~/Desktop/R")
+
 library(mixOmics)
 library(tidyverse)
-library(dplyr)
-library(plyr)
-library(tidyr)
+
 microbiome <- read.csv("microbiome.csv", row.names = 1, check.names = FALSE)
 metabolomics <- read.csv("metabolomics.csv", row.names = 1, check.names = FALSE)
 
@@ -49,8 +46,7 @@ sgccda.res <- block.splsda(X = data, Y = Y, ncomp = 2,
 
   microbiome<-microbiome[, -(1)]
   metabolomics<-metabolomics[, -(1:3)]
-  # Dados de entrada
-  # Reforçar que todos os valores nos blocos são numéricos
+  
   data <- list(
     microbiome = as.matrix(sapply(microbiome, as.numeric)),
     metabolomics = as.matrix(sapply(metabolomics, as.numeric))
